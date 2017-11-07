@@ -12,26 +12,26 @@ void create_huffman_tree_node_test()
 
 	huffman_tree* tree1 = create_huffman_tree_node(&item1,frequency1,NULL,NULL);
 
-	CU_ASSERT_EQUAL(*((int*)tree1->item), 5);
-	CU_ASSERT_EQUAL(tree1->frequency, 10);
-	CU_ASSERT_PTR_NOT_NULL(tree1->left);
-	CU_ASSERT_PTR_NOT_NULL(tree1->right);
+	CU_ASSERT_EQUAL(*((int*)get_huffman_node_item(tree1)), 5);
+	CU_ASSERT_EQUAL(get_huffman_node_frequency(tree1), 10);
+	CU_ASSERT_PTR_NOT_NULL(get_left_huffman_node(tree1));
+	CU_ASSERT_PTR_NOT_NULL(get_right_huffman_node(tree1));
 
 	huffman_tree* tree2 = create_huffman_tree_node(&item2,frequency2,NULL,NULL);
 
-	CU_ASSERT_EQUAL(*((int*)tree2->item), 50);
-	CU_ASSERT_EQUAL(tree2->frequency, 20);
-	CU_ASSERT_PTR_NOT_NULL(tree2->left);
-	CU_ASSERT_PTR_NOT_NULL(tree2->right);
+	CU_ASSERT_EQUAL(*((int*)get_huffman_node_item(tree2)), 50);
+	CU_ASSERT_EQUAL(get_huffman_node_frequency(tree2), 20);
+	CU_ASSERT_PTR_NOT_NULL(get_left_huffman_node(tree2));
+	CU_ASSERT_PTR_NOT_NULL(get_right_huffman_node(tree2));
 
 
-	huffman_tree* father = create_huffman_tree_node(&aux, (tree1->frequency + tree2->frequency), tree1, tree2);
+	huffman_tree* father = create_huffman_tree_node(&aux, (get_huffman_node_frequency(tree1) + get_huffman_node_frequency(tree2)), tree1, tree2);
 
-	CU_ASSERT_EQUAL(*((unsigned char*)father->item), '*');
-	CU_ASSERT_EQUAL(father->frequency, 30);
-	CU_ASSERT_PTR_NOT_NULL(father->left);
-	CU_ASSERT_PTR_NOT_NULL(father->right);
-}
+	CU_ASSERT_EQUAL(*((unsigned char*)get_huffman_node_item(father)), '*');
+	CU_ASSERT_EQUAL(get_huffman_node_frequency(father), 30);
+	CU_ASSERT_PTR_NOT_NULL(get_left_huffman_node(father));
+	CU_ASSERT_PTR_NOT_NULL(get_right_huffman_node(father));
+	}
 
 
 void huffman_tree_swap_test()
@@ -47,12 +47,12 @@ void huffman_tree_swap_test()
 	huffman_tree_swap(tree1, tree2);
 
 	// Primeiro Nó
-	CU_ASSERT_EQUAL(*((int*)tree1->item), 30);
-	CU_ASSERT_EQUAL(tree1->frequency, 10);
+	CU_ASSERT_EQUAL(*((int*)get_huffman_node_item(tree1)), 30);
+	CU_ASSERT_EQUAL(get_huffman_node_frequency(tree1), 10);
 
 	// Segundo Nó
-	CU_ASSERT_EQUAL(*((int*)tree2->item), 20);
-	CU_ASSERT_EQUAL(tree2->frequency, 5);
+	CU_ASSERT_EQUAL(*((int*)get_huffman_node_item(tree2)), 20);
+	CU_ASSERT_EQUAL(get_huffman_node_frequency(tree2), 5);;
 
 }
 
