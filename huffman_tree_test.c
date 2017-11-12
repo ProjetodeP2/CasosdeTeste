@@ -31,7 +31,7 @@ void create_huffman_tree_node_test()
 	CU_ASSERT_EQUAL(get_huffman_node_frequency(father), 30);
 	CU_ASSERT_PTR_NOT_NULL(get_left_huffman_node(father));
 	CU_ASSERT_PTR_NOT_NULL(get_right_huffman_node(father));
-	}
+}
 
 
 void huffman_tree_swap_test()

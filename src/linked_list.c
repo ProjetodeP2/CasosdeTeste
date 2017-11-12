@@ -6,10 +6,10 @@ node* create_list()
 }
 int is_list_empty(node* head)
 {
-    return(head == NULL);
+    if(head == NULL) return 1;
 }
 
-node* add_int_end(node* head, int item)
+int add_int_end(node* head, int item)
 {
     int *item_of_node = (int*)malloc(sizeof(int));
     *item_of_node = item;
@@ -32,7 +32,7 @@ node* add_int_end(node* head, int item)
     return aux;
 }
 
-node* add_unsigned_char_end(node* head, unsigned char item)
+unsigned char* add_unsigned_char_end(node* head, unsigned char item)
 {
     unsigned char *item_of_node = (unsigned char*)malloc(sizeof(unsigned char));
     *item_of_node = item;
@@ -55,7 +55,7 @@ node* add_unsigned_char_end(node* head, unsigned char item)
     return aux;
 }
 
-node* remove_last_node(node* head)
+int remove_last_node_int(node* head)
 {
     node *previous = NULL;
     node *current = head;
@@ -79,6 +79,7 @@ node* remove_last_node(node* head)
     free(current);
     return head;
 }
+
 node* copy_int_list(node *head)
 {
     node *aux = head;
@@ -92,6 +93,7 @@ node* copy_int_list(node *head)
     }
     return copy;
 }
+
 void print_int_list(node* head)
 {
     node* aux = head;

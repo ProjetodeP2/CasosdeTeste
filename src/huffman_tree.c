@@ -29,6 +29,11 @@ void set_right_huffman_node(huffman_tree *root, huffman_tree *right)
     root->right = right;
 }
 
+int get_list_node_item(list* head){
+    return head->item;
+}
+
+
 int get_huffman_node_frequency(huffman_tree *root)
 {
     return root->frequency;

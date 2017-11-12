@@ -5,19 +5,63 @@
 
 void create_list_test()
 {
-  CU_ASSERT_PTR_NOT_NULL(create_list());
+  node* list1 = create_list();
+  CU_ASSERT_PTR_NOT_NULL(list1);
+}
+
+void add_int_end_test()
+{
+  int x = 3;
+  int y = 4;
+  int z = 5;
+  node* list1 = create_list();
+  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &x)->item), 3);
+  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &y)->item), 4);
+  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &z)->item), 5);
+}
+
+void add_unsigned_char_end_test()
+{
+  node* list1 = create_list();
+  unsigned char x = '*';
+  unsigned char y = 'a';
+  unsigned char z = 'b';
+  CU_ASSERT_EQUAL(*((unsigned char*)add_unsigned_char_end(list1, &x)->item), '*');
+  CU_ASSERT_EQUAL(*((unsigned char*)add_unsigned_char_end(list1, &y)->item), 'a');
+  CU_ASSERT_EQUAL(*((unsigned char*)add_unsigned_char_end(list1, &z)->item), 'b');
 }
 
 void is_list_empty_test()
 {
   node *aux = create_list();
-  CU_ASSERT_EQUAL(is_list_empty(aux), true);
+  CU_ASSERT_EQUAL(is_list_empty(aux), 1);
 }
 
-void add_int_end_test()
+void remove_last_node_int()
 {
-  node *aux = create_list();
-  CU_ASSERT_EQUAL(add_int_end_test(aux, 0), 0);
+  int x = 3;
+  node* list1 = create_list();
+  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &x)->item), 3);
+
+  CU_ASSERT_PTR_NOT_NULL(*((int*)remove_last_node_int(list1));
+}
+
+void copy_int_list_test()
+{
+  int x = 3;
+  int y = 4;
+  int z = 5;
+  node* list1 = create_list();
+  node* list2 = create_list();
+  
+  list1 = add_int_end(list1, &x);
+  list1 = add_int_end(list1, &y);
+  list1 = add_int_end(list1, &z);
+
+  list2 = copy_int_list(list1);
+  CU_ASSERT_EQUAL(*((int*)list1->item,             *((int*)list2->item);
+  CU_ASSERT_EQUAL(*((int*)list1->next->item,       *((int*)list2->next->item);
+  CU_ASSERT_EQUAL(*((int*)list1->next->next->item, *((int*)list2->next->next->item);
 }
 
 int main() 
@@ -28,7 +72,7 @@ int main()
 
   CU_pSuite pSuite = NULL;
   // Add a suite to the registry
-  pSuite = CU_add_suite("sum_test_suite", 0, 0);
+  pSuite = CU_add_suite("list_test_suite", 0, 0);
   // Always check if add was successful
   if (NULL == pSuite) 
   {
@@ -36,32 +80,32 @@ int main()
     return CU_get_error();
   }
   // Add the tests to the suite
-  if (NULL == CU_add_test(pSuite, "create_heap_test", create_heap_test)) 
+  if (NULL == CU_add_test(pSuite, "create_list_test", create_list_test)) 
   {
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "get_parent_index_test", get_parent_index_test)) 
+  if (NULL == CU_add_test(pSuite, "add_int_end_test", add_int_end_test) 
   {
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "get_left_index_test", get_left_index_test)) 
+  if (NULL == CU_add_test(pSuite, "add_unsigned_char_end_test", add_unsigned_char_end_test)) 
   {
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "get_right_index_test", get_right_index_test))
+  if (NULL == CU_add_test(pSuite, "is_list_empty_test", is_list_empty_test))
   {
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "enqueue_huffman_heap_test", enqueue_huffman_heap_test))
+  if (NULL == CU_add_test(pSuite, "copy_int_list_test", copy_int_list_test))
   {
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "dequeue_n_min_heapify_test", dequeue_n_min_heapify_test))
+  if (NULL == CU_add_test(pSuite, "remove_last_node_int", remove_last_node_int))
   {
     CU_cleanup_registry();
     return CU_get_error();
