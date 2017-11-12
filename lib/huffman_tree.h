@@ -3,12 +3,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 /*
 	Define o tipo abstrato 'huffman_tree', cujo a struct contém um ponteiro para void para armazenar qualquer tipo deitem, a frequência do nó no arquivo,
 	um ponteiro para o nó filho da esquerda e um ponteiro para o nó filho da direita.
 */
+typedef struct huffman_tree
+{
+    void *item;
+    int frequency;
+    struct huffman_tree *left;
+    struct huffman_tree *right;
+} huffman_tree;
 
-typedef struct huffman_tree huffman_tree;
 /*
     Retorna um ponteiro para huffman_tree com o nó à esquerda do 'root'.
 */

@@ -1,13 +1,5 @@
 #include "../lib/huffman_tree.h"
 
-struct huffman_tree
-{
-    void *item;
-    int frequency;
-    struct huffman_tree *left;
-    struct huffman_tree *right;
-};
-
 huffman_tree* get_left_huffman_node(huffman_tree *root)
 {
     return root->left;
@@ -28,11 +20,6 @@ void set_right_huffman_node(huffman_tree *root, huffman_tree *right)
 {
     root->right = right;
 }
-
-int get_list_node_item(list* head){
-    return head->item;
-}
-
 
 int get_huffman_node_frequency(huffman_tree *root)
 {

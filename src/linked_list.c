@@ -1,15 +1,26 @@
 #include "../lib/linked_list.h"
 
+
+void* get_linked_list_item(node *head)
+{
+    return  head->item;
+}
+
+node* get_linked_list_next_node(node *head)
+{
+    return head->next;
+}
+
 node* create_list()
 {
     return NULL;
 }
 int is_list_empty(node* head)
 {
-    if(head == NULL) return 1;
+    return(head == NULL);
 }
 
-int add_int_end(node* head, int item)
+node* add_int_list_end(node* head, int item)
 {
     int *item_of_node = (int*)malloc(sizeof(int));
     *item_of_node = item;
@@ -32,7 +43,7 @@ int add_int_end(node* head, int item)
     return aux;
 }
 
-unsigned char* add_unsigned_char_end(node* head, unsigned char item)
+node* add_unsigned_char_list_end(node* head, unsigned char item)
 {
     unsigned char *item_of_node = (unsigned char*)malloc(sizeof(unsigned char));
     *item_of_node = item;
@@ -55,7 +66,7 @@ unsigned char* add_unsigned_char_end(node* head, unsigned char item)
     return aux;
 }
 
-int remove_last_node_int(node* head)
+node* remove_last_list_node(node* head)
 {
     node *previous = NULL;
     node *current = head;
@@ -72,14 +83,15 @@ int remove_last_node_int(node* head)
     {
         head = current->next;
     }
+    
     else
     {
         previous->next = current->next;
     }
     free(current);
     return head;
+    
 }
-
 node* copy_int_list(node *head)
 {
     node *aux = head;
@@ -88,12 +100,11 @@ node* copy_int_list(node *head)
     while (aux != NULL)
     {
         item = (int *)aux->item;
-        copy = add_int_end(copy, *item);
+        copy = add_int_list_end(copy, *item);
         aux = aux->next;
     }
     return copy;
 }
-
 void print_int_list(node* head)
 {
     node* aux = head;

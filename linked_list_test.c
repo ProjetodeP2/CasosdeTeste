@@ -6,29 +6,31 @@
 void create_list_test()
 {
   node* list1 = create_list();
-  CU_ASSERT_PTR_NOT_NULL(list1);
+  CU_ASSERT_PTR_NULL(list1);
 }
 
-void add_int_end_test()
+void add_int_list_end_test()
 {
-  int x = 3;
-  int y = 4;
-  int z = 5;
   node* list1 = create_list();
-  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &x)->item), 3);
-  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &y)->item), 4);
-  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &z)->item), 5);
+  list1 = add_int_list_end(list1, 3);
+  list1 = add_int_list_end(list1, 4);
+  list1 = add_int_list_end(list1, 5);
+  CU_ASSERT_EQUAL(*((int*)list1->item), 3);
+  CU_ASSERT_EQUAL(*((int*)list1->next->item), 4);
+  CU_ASSERT_EQUAL(*((int*)list1->next->next->item), 5);
 }
 
-void add_unsigned_char_end_test()
+void add_unsigned_char_list_end_test()
 {
   node* list1 = create_list();
-  unsigned char x = '*';
-  unsigned char y = 'a';
-  unsigned char z = 'b';
-  CU_ASSERT_EQUAL(*((unsigned char*)add_unsigned_char_end(list1, &x)->item), '*');
-  CU_ASSERT_EQUAL(*((unsigned char*)add_unsigned_char_end(list1, &y)->item), 'a');
-  CU_ASSERT_EQUAL(*((unsigned char*)add_unsigned_char_end(list1, &z)->item), 'b');
+
+  list1 = add_int_list_end(list1, '*');
+  list1 = add_int_list_end(list1, 'a');
+  list1 = add_int_list_end(list1, 'b');
+
+  CU_ASSERT_EQUAL(*((unsigned char*)list1->item),'*');
+  CU_ASSERT_EQUAL(*((unsigned char*)list1->next->item), 'a');
+  CU_ASSERT_EQUAL(*((unsigned char*)list1->next->next->item), 'b');
 }
 
 void is_list_empty_test()
@@ -37,31 +39,31 @@ void is_list_empty_test()
   CU_ASSERT_EQUAL(is_list_empty(aux), 1);
 }
 
-void remove_last_node_int()
+void remove_last_list_node_test()
 {
-  int x = 3;
   node* list1 = create_list();
-  CU_ASSERT_EQUAL(*((int*)add_int_end_test(list1, &x)->item), 3);
 
-  CU_ASSERT_PTR_NOT_NULL(*((int*)remove_last_node_int(list1));
+  list1 = add_int_list_end(list1, 3);
+  list1 = add_int_list_end(list1, 4);
+
+  list1 = remove_last_list_node(list1);
+  CU_ASSERT_PTR_NULL(list1->next);
 }
 
 void copy_int_list_test()
 {
-  int x = 3;
-  int y = 4;
-  int z = 5;
   node* list1 = create_list();
   node* list2 = create_list();
   
-  list1 = add_int_end(list1, &x);
-  list1 = add_int_end(list1, &y);
-  list1 = add_int_end(list1, &z);
+  list1 = add_int_list_end(list1, 3);
+  list1 = add_int_list_end(list1, 4);
+  list1 = add_int_list_end(list1, 5);
 
   list2 = copy_int_list(list1);
-  CU_ASSERT_EQUAL(*((int*)list1->item,             *((int*)list2->item);
-  CU_ASSERT_EQUAL(*((int*)list1->next->item,       *((int*)list2->next->item);
-  CU_ASSERT_EQUAL(*((int*)list1->next->next->item, *((int*)list2->next->next->item);
+
+   CU_ASSERT_EQUAL(*((int*)list1->item), *((int*)list2->item));
+   CU_ASSERT_EQUAL(*((int*)list1->next->item), *((int*)list2->next->item));
+   CU_ASSERT_EQUAL(*((int*)list1->next->next->item), *((int*)list2->next->next->item));
 }
 
 int main() 
@@ -85,12 +87,12 @@ int main()
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "add_int_end_test", add_int_end_test) 
+  if (NULL == CU_add_test(pSuite, "add_int_list_end_test", add_int_list_end_test)) 
   {
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "add_unsigned_char_end_test", add_unsigned_char_end_test)) 
+  if (NULL == CU_add_test(pSuite, "add_unsigned_char_list_end_test", add_unsigned_char_list_end_test)) 
   {
     CU_cleanup_registry();
     return CU_get_error();
@@ -105,7 +107,7 @@ int main()
     CU_cleanup_registry();
     return CU_get_error();
   }
-  if (NULL == CU_add_test(pSuite, "remove_last_node_int", remove_last_node_int))
+  if (NULL == CU_add_test(pSuite, "remove_last_list_node_test", remove_last_list_node_test))
   {
     CU_cleanup_registry();
     return CU_get_error();
