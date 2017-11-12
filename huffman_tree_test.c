@@ -14,15 +14,15 @@ void create_huffman_tree_node_test()
 
 	CU_ASSERT_EQUAL(*((int*)get_huffman_node_item(tree1)), 5);
 	CU_ASSERT_EQUAL(get_huffman_node_frequency(tree1), 10);
-	CU_ASSERT_PTR_NOT_NULL(get_left_huffman_node(tree1));
-	CU_ASSERT_PTR_NOT_NULL(get_right_huffman_node(tree1));
+	CU_ASSERT_PTR_NULL(get_left_huffman_node(tree1));
+	CU_ASSERT_PTR_NULL(get_right_huffman_node(tree1));
 
 	huffman_tree* tree2 = create_huffman_tree_node(&item2,frequency2,NULL,NULL);
 
 	CU_ASSERT_EQUAL(*((int*)get_huffman_node_item(tree2)), 50);
 	CU_ASSERT_EQUAL(get_huffman_node_frequency(tree2), 20);
-	CU_ASSERT_PTR_NOT_NULL(get_left_huffman_node(tree2));
-	CU_ASSERT_PTR_NOT_NULL(get_right_huffman_node(tree2));
+	CU_ASSERT_PTR_NULL(get_left_huffman_node(tree2));
+	CU_ASSERT_PTR_NULL(get_right_huffman_node(tree2));
 
 
 	huffman_tree* father = create_huffman_tree_node(&aux, (get_huffman_node_frequency(tree1) + get_huffman_node_frequency(tree2)), tree1, tree2);
